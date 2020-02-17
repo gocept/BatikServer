@@ -1,0 +1,37 @@
+################################################################################
+##
+## BatikServer: INSTALL
+##
+################################################################################
+$Id$
+
+INSTALLATION:
+   Linux:
+      - Extract the tgz-file
+
+   Windows:
+      - Run the Installer
+
+   from Source:
+      - customise Makefile
+      - run make install
+
+CONFIGURATION:
+   if necessary customize $INSTALL_DIR/conf/batikServer.config
+
+
+RUNNING BatikServer:
+   Linux:
+      - environmental variable JAVA_HOME must be set
+      - use $INSTALL_DIR/bin/batikServer to start, stop, restart the daemon
+
+   Windows:
+      - The installer installed BatikServer as Windows service.
+
+
+
+
+PROBLEMS
+--------
+  BatikServer can't run on on a different host than the Client calling it,
+  because they must share the default temp directory.

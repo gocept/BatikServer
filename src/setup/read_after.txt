@@ -1,0 +1,4 @@
+BatikServer was successfully installed as a windows service.
+
+To start it go to the Management Console for the services and start
+BatikServer or just restart your computer.

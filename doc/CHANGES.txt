@@ -1,0 +1,30 @@
+################################################################################
+##
+## BatikServer: Changes
+##
+################################################################################
+$Id$
+
+0.3.1
+    - Some minor improvements and corrections in doc/
+    - Using batik 1.6 instead of 1.5.1
+
+0.3.0
+    - Added possibility to starting BatikServer as Windows service
+    - Added possibility to starting BatikServer as Linux daemon
+    - Added binary distribution for Windows and Linux
+
+0.2.0
+    - Added Support for using a config file to store the options
+    - Java 1.4.x or higher is now required
+
+0.1.2
+    - using java.utils.Properties for storing properties
+    - never released
+
+0.1.1
+    - added possibility to write log to file instead of stdout
+    - changed command line options (see README.txt)
+
+0.1
+    - initial stable release

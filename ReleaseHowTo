@@ -1,0 +1,22 @@
+######################################################################
+# Release How To für BatikServer
+######################################################################
+
+
+1. Versionsnummern anpassen in:
+    version.txt
+    src/lib/batikServer.java (Methode printLicense())
+2. eventuell Jahreszahlen des Copyrights anpassen in:
+    doc/README.txt
+    src/conf/linux/batikServer.config
+    src/conf/windows/batikServer.config
+    src/lib/batikServer.java (2x!)
+3. ÄNDERUNGEN EINCHECKEN!
+4. svnroot goceptpub
+5. svncopy tags BatikServer BatikServer_`cat version.txt | tr "." "_"`_tag "Release `cat version.txt`"
+6. ./makeRelease ausführen
+7. ./BatikServer_*_windows.tgz auf Jucon/Packaging VM transferieren und
+   Installer bauen. (mittels c:\\makeBatikServer.sh <version> oder
+   makeWindowsVersion.sh)
+8. Update der Dokumentation auf wwwadmin.gocept
+9. Neues NewsItem erstellen

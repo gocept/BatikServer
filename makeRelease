@@ -1,0 +1,44 @@
+#! /bin/bash
+
+VERSION=`cat version.txt`
+SVN_TAG=BatikServer_`echo $VERSION | tr "." "_"`_tag
+
+# preparation
+TMP=build
+rm -rf $TMP
+mkdir -p $TMP
+cd $TMP
+svn export https://svn.gocept.com/repos/gocept/BatikServer/tags/$SVN_TAG BatikServer
+if [ $? = "1" ] ; then
+    exit;
+fi
+cd BatikServer
+
+# source release
+SDIR=BatikServer_`echo $VERSION`_src
+STGZ=$SDIR.tgz
+SMD5=$STGZ.md5
+mkdir -p $SDIR
+cp Makefile $SDIR
+cp version.txt $SDIR
+cp -r doc $SDIR
+cp -r src $SDIR
+tar -czf $STGZ $SDIR
+rm -rf $SDIR
+md5sum $STGZ >$SMD5
+
+# linux binary release
+LDIR=BatikServer_`echo $VERSION`_Linux
+LTGZ=$LDIR.tgz
+LMD5=$LTGZ.md5
+make linux
+md5sum $LTGZ >$LMD5
+
+# windows binary release (preparation)
+WDIR=BatikServer_`echo $VERSION`_Windows
+WTGZ=$WDIR.tgz
+make windows
+mv $WTGZ ../..
+
+scp $STGZ $SMD5 $LTGZ $LMD5 mac@amy.gocept.com:/usr/local/ftp/BatikServer
+

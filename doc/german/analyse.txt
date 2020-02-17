@@ -1,0 +1,36 @@
+################################################################################
+##
+## BatikServer: Analyse
+##
+################################################################################
+$Id: analyse.txt,v 1.1 2005/04/06 13:10:26 mac Exp $
+
+
+Problemstellung:
+  - Wenn für jede Image-Conversion SVG->PNG Batik-Rasterizer einzeln aufgerufen
+    wird, dann muss jedes mal die gesamt JAVA-VM geladen und gestartet werden.
+
+Lösungsansatz:
+  - Batik als Server laufen lassen, der Konvertierungsrequests empfängt &
+    bearbeitet.
+
+Zielstellungen:
+  - Minimierung der Konvertierungszeit für SVG->PNG
+  - Offenheit für andere Zielformate.
+
+Anforderungen:
+  - Minimum:
+      + BatikServer und ZopeServer auf einer Maschine
+      + einfaches Protokoll zwischen Client und Server
+      + unverschlüsselte Datenübertragung
+      + nur eine Java-VM-Instanz für alle Konvertierungen
+      + parallele Abarbeitung mehrerer Konvertierungsanfragen
+
+  - erweiterete Anforderungen:
+      + BatikServer auf anderer Maschine als ZopeServer lauffähig
+      + Cache für identische Konvertierungsanfragen
+
+  - maximale Anforderungen:
+      + verteilte Serverinstanzen, die mittels LoadBalancer-ähnlichem Tool für
+        Konvertierungsaufgaben herangezogen werden. (vgl. YAAS)
+      + Verschlüsselung der zu übertragenden Daten auf Wunsch

@@ -1,0 +1,21 @@
+################################################################################
+##
+## BatikServer: Requirements
+##
+################################################################################
+$Id: reqirements.txt,v 1.7 2005/04/06 13:59:01 mac Exp $
+
+Requirements binary distribution:
+  * java 1.4.x or higher
+  * Windows NT/2000/2003 or higher
+  * any Linux
+
+Requirements source distribution:
+  * apache's batik (is downloaded trough Makefile)
+
+
+Tested with:
+   batik 1.1
+         1.5beta5
+         1.5
+         1.5.1

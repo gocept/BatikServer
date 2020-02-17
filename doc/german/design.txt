@@ -1,0 +1,38 @@
+################################################################################
+##
+## BatikServer: Design
+##
+################################################################################
+$Id: design.txt,v 1.1 2005/04/06 13:10:26 mac Exp $
+
+Anforderungen:
+  - Server in Java geschrieben, da (außer in Maximalanforderungen) nur eine
+     Java-VM-Instanz
+  - Protokoll sollte keine großen Mengen Daten übertragen.
+
+
+Server:
+  - Nutzung von Threads für paralles Abarbeiten der Requests
+  - Default-Port: 54822 (9er Tastatur: 'Batik' rückwärts)
+  - beim Start Portnummer angebbar
+
+Protokoll für Minimalanforderungen:
+  - BatikServer & Client auf einer logischen Maschine, also gemeinsamer Zugriff
+    auf Festplatte.
+  - plain Text, keine Verschlüsselung
+  - Request:
+      CONV <path> TO <path2> AS <format> BSP 1.0\n\n
+      <path> Source-Pfad auf die lokale Festplatte, muss URL-encoded sein
+      <path2> Destination-Pfad auf die lokale Festplatte, muss URL-encoded sein,
+              muss eine Datei sein, die bereits existiert, sonst erstellt batik ein
+              neues Verzeichnis
+      <format> Mime-Type für das Ergebnisformat, muss von batik unterstützt werden
+      Leerzeichen sind ASCII 20h
+      \n ist ASCII 0Ah
+  - Result: (Antwort)
+      1 ... Erfolg in Konvertierung
+      0 ... Misserfolg in Konvertierung
+  - Seiteneffekt:
+      Das File in <path2> wird mit dem konvertieten Image beschrieben.
+  - Verstöße gegen das Protokoll oder Fehler in der Konvertierung werden mit 
+      einer 0 (Misserfolg) beantwortet und im Log protokolliert.

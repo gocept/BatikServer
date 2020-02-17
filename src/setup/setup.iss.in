@@ -1,0 +1,52 @@
+[Setup]
+AppName=BatikServer
+AppVerName=BatikServer %version%
+AppPublisher=gocept gmbh & co. kg
+AppPublisherURL=http://www.gocept.com/angebot/opensource/BatikServer
+AppSupportURL=http://www.gocept.com/angebot/opensource/BatikServer
+AppUpdatesURL=http://www.gocept.com/angebot/opensource/BatikServer
+AppVersion=%version%
+VersionInfoTextVersion=%version%
+DefaultDirName={pf}\BatikServer
+DefaultGroupName=BatikServer
+AllowNoIcons=yes
+LicenseFile=doc\LICENSE_BatikServer.txt
+InfoBeforeFile=setup/read_before.txt
+InfoAfterFile=setup/read_after.txt
+OutputBaseFilename=BatikServer_%version%_Windows
+OutputDir=./
+PrivilegesRequired=admin
+; Win NT as minimum
+MinVersion=4.0,4.0
+Compression=lzma/max
+SolidCompression=yes
+
+[Languages]
+Name: "de"; MessagesFile: "compiler:Languages\German.isl"
+Name: "en"; MessagesFile: "compiler:Default.isl"
+
+[Files]
+Source: "bin\*"; DestDir: "{app}\bin"
+Source: "conf\*"; DestDir: "{app}\conf"
+Source: "doc\*"; DestDir: "{app}\doc"; Flags: recursesubdirs createallsubdirs
+Source: "lib\*"; DestDir: "{app}\lib"; Flags: recursesubdirs createallsubdirs
+
+[Dirs]
+Name: "{app}\logs"
+
+[INI]
+Filename: "{app}\batikServer.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://www.gocept.com/angebot/opensource/BatikServer"
+
+[Icons]
+Name: "{group}\{cm:ProgramOnTheWeb,BatikServer}"; Filename: "{app}\batikServer.url"
+Name: "{group}\{cm:UninstallProgram,BatikServer}"; Filename: "{uninstallexe}"
+
+[UninstallDelete]
+Type: files; Name: "{app}\batikServer.url"
+
+[Run]
+Filename: "{app}\bin\InstallBatikServer-NT.bat"; StatusMsg: "Windows service gets installed"
+
+[UninstallRun]
+Filename: "{app}\bin\UninstallBatikServer-NT.bat"
+

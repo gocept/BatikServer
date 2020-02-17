@@ -1,0 +1,47 @@
+################################################################################
+##
+## BatikServer: Usage
+##
+################################################################################
+$Id: usage.txt,v 1.6 2005/04/06 13:59:01 mac Exp $
+
+Server:
+  - Usage of threads for parallel processing of requests
+  - Default-Port: 54822 ('Batik' backwards on a mobile phone keyboard)
+  - start using: see INSTALL.txt
+
+Protokoll for Version 0.1+:
+  - BatikServer and Client need access to one common directory in which SVG- and
+    result-images are stored, because they are not transfered using the
+    protocol
+  - Protocol is plain text, without encryption, without personalisation.
+  - Request for conversion which is sent through socket to the server:
+      CONV <s_path> TO <d_path> AS <format> BSP 1.0\n\n
+
+    <s_path> source path of the SVG-Image, needs to be URL-encoded, this path
+             must be readable by the server
+    <d_path> destination path where the converted image is to be saved, needs to
+             be URL-encoded. The d_path must end in an existing file which is
+             writeable by the server. If this file does not exist, batik creates
+             a directory with this name and stores the converted file therein-
+    <format> Mime-Type of the wished result-format (must be supported by batik)
+    Spaces in request are ASCII 20h
+    \n is ASCII 0Ah
+
+  - Server keeps connection open until conversion is done.
+  - Answer of Server:
+      1 ... successful conversion
+      0 ... conversion was not successfull (see console of server for error
+            message)
+  - side effect:
+      file in <d_path> gets overwritten with converted Image.
+  - Violation of the protocol or errors in conversion lead to a 0 as return
+    message and a notice on in the log file.
+
+  - There is another command BatikServer understands:
+       HELLO BatikServer
+  - This command is to check if BatikServer is running (sanity check) and to
+    test if the server listening on the port is BatikServer.
+  - Answer of Server:
+      0 ... because it does no coversion you see no success answer
+  - side effects: none

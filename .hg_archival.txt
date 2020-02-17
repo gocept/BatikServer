@@ -1,0 +1,6 @@
+repo: 086926b255269da43a1aea8cdb298f7538bf0aa9
+node: 689ede3203e249c1cb163e2f57b1a8f9339cf350
+branch: default
+latesttag: BatikServer_0_3_1_tag
+latesttagdistance: 5
+changessincelatesttag: 5

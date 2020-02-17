@@ -1,0 +1,11 @@
+#! /bin/bash
+# make windows version + upload it to webserver
+
+name=BatikServer_%version%_Windows
+exe=$name.exe
+md5=$exe.md5
+
+/cygdrive/c/Programme/Inno\ Setup\ 5/ISCC.exe setup.iss
+md5sum $exe > $md5
+
+scp $exe $md5 mac@amy.gocept.com:/usr/local/ftp/BatikServer
